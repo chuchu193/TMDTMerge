@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "DepartmentManager";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+<style>
+
+    img {
+        filter: gray; /* IE6-9 */
+        -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+        -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+        box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+        margin-bottom: 20px;
+    }
+
+        img:hover {
+            filter: none; /* IE6-9 */
+            -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+        }
+
+        .group_btn{
+            padding-bottom: 10px;
+        }
+        .delete{
+            margin-left: 30px;
+         
+        }
+    .edit {
+        margin-left: 50px;
+       
+    }
+    .delete a {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .edit a {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+</style>
+
+@model IEnumerable<HotelTMDT.EF.MALOAIPHONG>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul id="active" class="nav navbar-nav side-nav">
+        <li><a href="Index"><i class="fa fa-bullseye"></i> Tổng Quan</a></li>
+        <li class="selected"><a href="DepartmentManager"><i class="fa fa-tasks"></i> Loại Phòng</a></li>
+        <li><a href="Signup"><i class="fa fa-list-ol"></i> Đăng Ký Quản Lý</a></li>
+        <li><a href="Register"><i class="fa fa-font"></i> Đăng Ký Hành Khách</a></li>
+        <li><a href="RoomList"><i class="fa fa-font"></i> Danh Sách Phòng</a></li>
+        <li><a href="CustomerList"><i class="fa fa-list-ol"></i> Danh Sách Hành Khách</a></li>
+        <li><a href="BillList"><i class="fa fa-font"></i> Danh Sách Hóa Đơn</a></li>
+    </ul>
+</div>
+
+<div class="container">
+    <button class="btn btn-danger">@Html.ActionLink("Create", "CreateRoom")</button>
+    <div class="row">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div style="margin-left:2px; margin-right:-20px" class="col-md-4">
+                    <div class="well" style="width:300px; min-height:400px; min-width:350px">
+                        <div class="group_btn">
+                            <img style="height:210px; width:310px" class="thumbnail img-responsive" alt="Bootstrap template" src="@Html.DisplayFor(modelItem => item.HINHANH)" />
+                            <button class="btn delete">@Html.ActionLink("Delete", "DeleteRoom")</button>
+                            <button class="btn edit">@Html.ActionLink("Edit", "EditRoom")</button>
+                        </div>
+                         <span>
+                            <span class=""><i>@Html.DisplayFor(modelItem => item.TENLOAIPHONG)</i></span>
+                            @*<span class="boardName"><i>@Html.DisplayFor(modelItem => item.MIEUTA)</i></span>*@
+                            <span class="boardName"><i>@Html.Action("ViewString", new { @ma = item.MALOAIPHONG1 })</i></span>
+                        </span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
